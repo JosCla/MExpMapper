@@ -1,0 +1,36 @@
+.General Utilities
+
+Lbl CPRV {
+    .Just the Copy() command but copies bytes in reverse order
+    .(Good for copying a portion of memory to an overlapping portion
+    .  that's forwards in memory)
+    .r1: Base memory address (source)
+    .r2: Base memory address (target)
+    .r3: Number of bytes to copy
+    .(returns nothing)
+
+    For(G,1,r_3)
+        {r_1+r_3-G}->{r_2+r_3-G}
+    End
+}
+
+Lbl DGWP {
+    .DispGraph with parity
+    .(Will call DispGraph while also tracking its parity)
+
+    DispGraph^r
+    1-CP->CP
+
+    Return
+}
+
+Lbl DGUP {
+    .DispGraph until a certain parity is met
+    .r1: Desired parity
+
+    If CP!=r_1
+        DGWP()
+    End
+
+    Return
+}
