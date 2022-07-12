@@ -7,7 +7,7 @@ Lbl GHAT {
     If r_2>=MH??r_1>=MW
         0Return
     End
-    {r_2*MW+r_1+2+Y_3}Return
+    {r_2*MW+r_1+2+HM}Return
 }
 
 Lbl GIAT {
@@ -17,17 +17,7 @@ Lbl GIAT {
     If r_2>=MH??r_1>=MW
         0Return
     End
-    {r_2*MW+r_1+2+Y_1}Return
-}
-
-Lbl GEIA {
-    .Get entity island at
-    .r1-r2: posX, posY
-    .Directly returns the entity island owner at the given position (EMAP)
-    If r_2>=MH??r_1>=MW
-        0Return
-    End
-    {r_2*MW+r_1+2+EM}Return
+    {r_2*MW+r_1+2+IM}Return
 }
 
 Lbl ILAT {
@@ -73,5 +63,5 @@ Lbl GPBA {
     If r_2>=MH??r_1>=MW
         0Return
     End
-    {r_2*MW+r_1+2+Y_4}Return
+    {r_2*MW+r_1+2+OM}Return
 }

@@ -30,3 +30,19 @@ Lbl CCAM {
 
     Return
 }
+
+Lbl CCAP {
+    .Center the camera at a specified position
+    .r1-r3: PosX, PosY, PosZ
+
+    .Centering on X
+    r_1>=5?r_1-5->CX,0->CX
+    CX+12>=MW?MW-12->CX
+
+    .Centering on Y
+    r_2>=3?r_2-3->CY,0->CY
+    CY+8>=MH?MH-8->CY
+
+    .Centering on Z
+    r_3->CZ
+}

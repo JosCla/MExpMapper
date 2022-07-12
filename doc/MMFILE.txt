@@ -1,0 +1,44 @@
+.MExp File Management
+
+Lbl LWOR {
+    .Loads a world file into RAM, unarchiving it
+    .Directly returns the load status (0 good, higher bad)
+
+    .Unarchiving the loading the world files
+    UnArchive Str1FIMAP
+    UnArchive Str1FIDAT
+    UnArchive Str1FHMAP
+    UnArchive Str1FOMAP
+
+    .Loading the world files
+    GetCalc(Str1FIMAP)->IM
+    GetCalc(Str1FIDAT)->ID
+    GetCalc(Str1FHMAP)->HM
+    GetCalc(Str1FOMAP)->OM
+
+    .Exiting if that failed
+    !If IM?ID?HM?OM
+        1Return
+    End
+
+    .Getting map dimensions
+    {IM}->MW
+    {IM+1}->MH
+
+    0Return
+}
+
+Lbl REAF {
+    .Rearchive Files
+    .Returns 0 if files could be rearchived, 1 if they could not
+
+    Archive Str1FIMAP->G
+    Archive Str1FIDAT->H
+    Archive Str1FHMAP->I
+    Archive Str1FOMAP->J
+
+    If G?H?I?J
+        0Return
+    Else
+    1Return
+}

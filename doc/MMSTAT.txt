@@ -1,66 +1,16 @@
 .Static Memory
 
 .Addresses of various static variables
-L_1->^EM+2->^CE+2->^EP+2->^PD
+L_1->^IM+2->^ID+2->^HM+2->^OM
     +2->^MW+2->^MH
     +2->^CX+2->^CY+2->^CZ
     +2->^CP
-    +2->^IT+2->^IP
 
 .Filenames
-"appvMEEMAP"->Str1FEMAP
-"appvMECENT"->Str1FCENT
-"appvMEEPTR"->Str1FEPTR
-"appvMEPDAT"->Str1FPDAT
 "appvMEIMAP"->Str1FIMAP
 "appvMEIDAT"->Str1FIDAT
 "appvMEHMAP"->Str1FHMAP
 "appvMEOMAP"->Str1FOMAP
-
-."Max entity ascension height"
-.(Per collision type)
-.Use nib{}^r to correctly access entries
-[11101000]->GDB1MEAH
-
-"Can Climb Ladder"
-.(Per collision type)
-.Use nib{}^r to correctly access entries
-[10000000]->GDB1CCLL
-
-"Can Move Off Raft"
-.(Per collision type)
-.Use nib{}^r to correctly access entries
-[01111000]->GDB1CMOR
-
-."Entity interaction table (above)"
-.The rows are the actor, and the columns are what is acted upon
-.Left half is land target, right half is water target
-.Use nib{}^r to correctly access entries
-[0333347002222200]->GDB1EITA
-[0303010003030000
-[0303010003030000
-[0202000002020000
-[0303010003030000
-[0303000003030000
-[0000000000000000
-
-."Entity interaction table (below)"
-.The rows are the actor, and the columns are what is acted upon
-.Left half is land target, right half is water target
-.Use nib{}^r to correctly access entries
-[0333117006661100]->GDB1EITB
-[0105010001011100
-[0105010001011100
-[0303110001011100
-[0103010001011100
-[0101110001011100
-[0000000000000000
-
-"Player interaction rolling log downgrade"
-.If the player is standing on a rolling log on water trying to interact
-.  with another entity, this describes how each movement type should downgrade
-.Use nib{}^r to correctly access entries
-[66222666]->GDB1PIRD
 
 ."Entity height"
 .(Per entity type)

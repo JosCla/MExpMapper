@@ -1,0 +1,114 @@
+.Entity Utilities
+
+Lbl GHEB {
+    .Get highest entity below
+    .r1-r2: posX, posY
+    .r3: height it must be below
+    .Directly returns the pointer to the highest entity below given position
+    .Returns 0 if no such entity exists
+
+    0->r_6
+    Goto GICT
+}
+
+Lbl GLEA {
+    .Get lowest entity at
+    .r1-r2: posX, posY
+    .Directly returns the pointer to the lowest entity at the given pos
+    .Returns 0 if no such entity exists
+
+    1->r_6
+    Goto GICT
+}
+
+Lbl IEAT {
+    .Is entity at
+    .r1-r2: posX, posY
+    .Returns 0 if no entity here, otherwise returns 1
+
+    2->r_6
+    Goto GICT
+}
+
+Lbl GSEH {
+    .Get sorted entity list by height
+    .r1-r2: posX, posY
+    .Directly returns the length of the entity list
+    .Will place the sorted list (pointers to CENT) below stack pointer S
+    .  (the list has lower height at higher addresses, higher height at lower)
+
+    3->r_6
+    Goto GICT
+}
+
+Lbl GICT {
+    .Get (iterate current tile)
+    .Consolidates the functionalities of GHEB, GLEA, IEAT, and GSEH
+    .r1-r2: PosX, PosY
+    .r3-r5: Other relevant arguments to functions
+    .r6: Which function to use (0=GHEB, 1=GLEA, 2=IEAT, 3=GSEH)
+
+    .First finding the island at this position
+    .  (arguments are already in the right spots)
+    GIAT()->G
+
+    .(if no island here, just return null pointer)
+    Return!If G
+
+    0->T .(pointer to entity)
+    If r_6=0
+        0->U
+    ElseIf r_6!=3
+        255->U
+    End
+
+    .Traversing the island data entity array to find the target entity/entities
+    {G*2+ID}^r->H
+    {H+ID}->I
+    For(J,1,I)
+        .Getting pointer to current entity
+        J*8+H+ID->K
+
+        .Checking if the entity is at the right spot
+        If {K+1}=r_1?{K+2}=r_2
+            .Making more checks based on the relevant function
+            If r_6=0?{K+5}>=U?{K+5}<r_3
+                K->T
+                {K+5}->U
+            ElseIf r_6=1?{K+5}<=U
+                K->T
+                {K+5}->U
+            ElseIf r_6=2
+                1Return
+            ElseIf r_6=3
+                .If the entity is at the right spot, we can insert it!
+                If T
+                    .Find first element whose height is less
+                    T-1->L
+                    For(M,0,L)
+                        {-M-1*2+S}^r->N
+                    EndIf {K+5}<{N+5}
+
+                    .Shift over greater elements
+                    T-M->L .(num elements to shift)
+                    If J
+                        -T*2+S->N
+                        Copy(N,N-2,L*2)
+                    End
+
+                    .Insert at our desired position
+                    K->{-M-1*2+S}^r
+                Else
+                    .Empty list, just insert at the first position
+                    K->{S-2}^r
+                End
+
+                .Incrementing list length
+                T++
+            End
+        End
+    End
+
+    .Finally, returning the target pointer
+    TReturn
+}
