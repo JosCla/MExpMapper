@@ -31,10 +31,10 @@ ClrHome
 Disp "SAVING..."
 REAF()->A
 If A
-ClrHome
-Disp "FAILED TO REARC"
-Repeat getKey(9)
-End
+    ClrHome
+    Disp "FAILED TO REARC"
+    Repeat getKey(9)
+    End
 End
 Return
 
