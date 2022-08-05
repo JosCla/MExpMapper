@@ -15,3 +15,11 @@ Lbl CCAP {
     .Centering on Z
     r_3->CZ
 }
+
+Lbl CCAS {
+    .Center the camera at the selected position
+    .Returns nothing
+
+    GHAT(SX,SY)->G .height
+    CCAP(SX,SY,G)
+}
