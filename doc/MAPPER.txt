@@ -13,7 +13,17 @@ DSCR()
 
 .Main loop
 Repeat getKey(15)
-DGWP()
+    DGWP()
+
+    If getKey(1)
+        MVSL(0,1)
+    ElseIf getKey(2)
+        MVSL(-1,0)
+    ElseIf getKey(3)
+        MVSL(1,0)
+    ElseIf getKey(4)
+        MVSL(0,-1)
+    End
 End
 
 .Saving and exiting
@@ -27,5 +37,27 @@ Repeat getKey(9)
 End
 End
 Return
+
+Lbl MVSL {
+    .Moves the selector by a given offset
+    .r1: MoveX
+    .r2: MoveY
+
+    .Moving the selector
+    SX+r_1->G
+    SY+r_2->H
+    If G<MW?H<MH
+        G->SX
+        H->SY
+    End
+
+    .Drawing to a parity of 1
+    DGUP(1)
+
+    .Redrawing the screen
+    DRSL()
+
+    Return
+}
 
 .(insert all other source files here)

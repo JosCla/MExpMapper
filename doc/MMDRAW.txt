@@ -120,6 +120,11 @@ Lbl DTIL {
         Pt-Mask(r_3,C,D and 240+Pic1STIL)
     End
 
+    .Rendering the cursor if applicable
+    If r_1=SX?r_2=SY
+        Pt-Mask(r_3,C,Pic1CURS)
+    End
+
     .Render stumps/rocks if needed
     If De4
         Pt-Mask(r_3,C-2,Pic1STIL+144)

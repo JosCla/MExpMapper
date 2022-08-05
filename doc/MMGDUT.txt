@@ -23,3 +23,16 @@ Lbl CCAS {
     GHAT(SX,SY)->G .height
     CCAP(SX,SY,G)
 }
+
+Lbl DRSL {
+    .Draw the screen, centered at the selector
+
+    .Centering the camera at the selector
+    CCAS()
+
+    .Redrawing the screen
+    ClrDraw^r^r
+    DSCR(CX,CY,CZ)
+
+    Return
+}
