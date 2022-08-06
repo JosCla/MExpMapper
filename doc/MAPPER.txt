@@ -8,6 +8,7 @@ ReturnIf LWOR()
 ClrHomeClrDraw^r^r
 0->CP
 0->SX->SY
+SEMD(0)
 CCAS()
 DSCR()
 
@@ -15,6 +16,7 @@ DSCR()
 Repeat getKey(15)
     DGWP()
 
+    .Movement
     If getKey(1)
         MVSL(0,1)
     ElseIf getKey(2)
@@ -23,6 +25,39 @@ Repeat getKey(15)
         MVSL(1,0)
     ElseIf getKey(4)
         MVSL(0,-1)
+    End
+
+    .Editor mode changing
+    If getKey(53)
+        SEMD(1)
+    ElseIf getKey(52)
+        SEMD(2)
+    ElseIf getKey(51)
+        SEMD(3)
+    ElseIf getKey(50)
+        SEMD(4)
+    End
+
+    .Actions within editor mode
+    If MD=1
+        .IMAP mode
+    ElseIf MD=2
+        .IDAT mode
+    ElseIf MD=3
+        .HMAP mode
+        If getKey(54)
+            SY*MW+SX+2+HM->G
+            {G}+1->{G}
+            DGUP(1)
+            DRSL()
+        ElseIf getKey(48)
+            SY*MW+SX+2+HM->G
+            {G}-1->{G}
+            DGUP(1)
+            DRSL()
+        End
+    ElseIf MD=4
+        .OMAP mode
     End
 End
 
@@ -58,6 +93,14 @@ Lbl MVSL {
     DRSL()
 
     Return
+}
+
+Lbl SEMD {
+    .Set editor mode
+    .r1: New editor mode
+
+    r_1->MD
+    0->CB
 }
 
 .(insert all other source files here)

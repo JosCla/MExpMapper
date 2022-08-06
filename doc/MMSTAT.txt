@@ -1,11 +1,22 @@
 .Static Memory
 
 .Addresses of various static variables
+.  IM: Island map
+.  ID: Island data
+.  HM: Height map
+.  OM: Other properties map
+.  MW/MH: Map width and height
+.  CX/CY/CZ: Camera X,Y,Z
+.  CP: Camera draw parity
+.  SX/SY: Selector X,Y
+.  MD: Editor mode
+.  CB: Copy buffer
 L_1->^IM+2->^ID+2->^HM+2->^OM
     +2->^MW+2->^MH
     +2->^CX+2->^CY+2->^CZ
     +2->^CP
     +2->^SX+2->^SY
+    +2->^MD+2->^CB
 
 .Filenames
 "appvMEIMAP"->Str1FIMAP
