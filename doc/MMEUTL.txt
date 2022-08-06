@@ -91,7 +91,7 @@ Lbl GICT {
 
                     .Shift over greater elements
                     T-M->L .(num elements to shift)
-                    If J
+                    If L
                         -T*2+S->N
                         Copy(N,N-2,L*2)
                     End
