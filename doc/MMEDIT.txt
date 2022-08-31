@@ -1,0 +1,22 @@
+.Map EDIT utilities
+
+Lbl CHHT {
+    .Change terrain height
+    .r1-r2: PosX, PosY
+    .r3: Change in height
+
+    {r_2*MW+r_1+2+HM}+r_3->r_3
+    STHT()
+
+    Return
+}
+
+Lbl STHT {
+    .Set terrain height
+    .r1-r2: PosX, PosY
+    .r3: Target terrain height
+
+    r_3->{r_2*MW+r_1+2+HM}
+
+    Return
+}

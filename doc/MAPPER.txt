@@ -46,13 +46,11 @@ Repeat getKey(15)
     ElseIf MD=3
         .HMAP mode
         If getKey(54)
-            SY*MW+SX+2+HM->G
-            {G}+1->{G}
+            CHHT(SX,SY,1)
             DGUP(1)
             DRSL()
         ElseIf getKey(48)
-            SY*MW+SX+2+HM->G
-            {G}-1->{G}
+            CHHT(SX,SY,-1)
             DGUP(1)
             DRSL()
         End
