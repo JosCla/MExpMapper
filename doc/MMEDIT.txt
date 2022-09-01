@@ -60,3 +60,13 @@ Lbl TGLD {
 
     Return
 }
+
+Lbl SPBA {
+    .Set property byte at
+    .r1-r2: PosX, PosY
+    .r3: Property byte
+
+    r_3->{r_2*MW+r_1+2+OM}
+
+    Return
+}

@@ -78,6 +78,12 @@ Repeat getKey(15)
             TGLD(SX,SY)
             DGUP(1)
             DRSL()
+        ElseIf getKey(55)
+            GPBA(SX,SY)->CB
+        ElseIf getKey(40)
+            SPBA(SX,SY,CB)
+            DGUP(1)
+            DRSL()
         End
     End
 End
