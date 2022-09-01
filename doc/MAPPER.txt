@@ -60,6 +60,18 @@ Repeat getKey(15)
             TGWT(SX,SY)
             DGUP(1)
             DRSL()
+        ElseIf getKey(48)
+            TGST(SX,SY)
+            DGUP(1)
+            DRSL()
+        ElseIf getKey(47)
+            TGRK(SX,SY)
+            DGUP(1)
+            DRSL()
+        ElseIf getKey(46)
+            TGLD(SX,SY)
+            DGUP(1)
+            DRSL()
         End
     End
 End

@@ -30,3 +30,33 @@ Lbl TGWT {
 
     Return
 }
+
+Lbl TGST {
+    .Toggle stump at
+    .r1-r2: PosX, PosY
+
+    r_2*MW+r_1+2+OM->G
+    {G} xor 4->{G}
+
+    Return
+}
+
+Lbl TGRK {
+    .Toggle rock at
+    .r1-r2: PosX, PosY
+
+    r_2*MW+r_1+2+OM->G
+    {G} xor 8->{G}
+
+    Return
+}
+
+Lbl TGLD {
+    .Toggle ladder at
+    .r1-r2: PosX, PosY
+
+    r_2*MW+r_1+2+OM->G
+    {G} xor 1->{G}
+
+    Return
+}
