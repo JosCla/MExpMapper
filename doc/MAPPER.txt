@@ -53,6 +53,12 @@ Repeat getKey(15)
             CHHT(SX,SY,-1)
             DGUP(1)
             DRSL()
+        ElseIf getKey(55)
+            GHAT(SX,SY)->CB
+        ElseIf getKey(40)
+            STHT(SX,SY,CB)
+            DGUP(1)
+            DRSL()
         End
     ElseIf MD=4
         .OMAP mode

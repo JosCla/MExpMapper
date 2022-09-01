@@ -23,7 +23,8 @@ IDAT mode:
 HMAP mode:
 - Press [2ND] to increment the terrain height at the cursor
 - Press [ALPHA] to decrement the terrain height at the cursor
-
+- Press [MODE] to copy the current terrain height
+- Press [X,T] to paste the copied terrain height
 
 
 OMAP mode:
