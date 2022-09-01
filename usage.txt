@@ -1,0 +1,30 @@
+MExpMapper Usage Guide:
+
+At any point, press [CLEAR] to save and exit the application.
+
+Press the function keys to enter different modes:
+- [Y=] ("F1"): IMAP mode
+- [WINDOW] ("F2"): IDAT mode
+- [ZOOM] ("F3"): HMAP mode
+- [TRACE] ("F4"): OMAP mode
+
+
+
+IMAP mode:
+- 
+
+
+
+IDAT mode:
+-
+
+
+
+HMAP mode:
+- Press [2ND] to increment the terrain height at the cursor
+- Press [Alpha] to decrement the terrain height at the cursor
+
+
+
+OMAP mode:
+- Press [2ND] to toggle whether or not the terrain is water
