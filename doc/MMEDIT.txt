@@ -20,3 +20,13 @@ Lbl STHT {
 
     Return
 }
+
+Lbl TGWT {
+    .Toggle water at
+    .r1-r2: PosX, PosY
+
+    r_2*MW+r_1+2+OM->G
+    {G} xor 2->{G}
+
+    Return
+}
