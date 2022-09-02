@@ -35,7 +35,18 @@ Lbl TGST {
     .Toggle stump at
     .r1-r2: PosX, PosY
 
+    .Getting pointer to properties byte
     r_2*MW+r_1+2+OM->G
+
+    .Increasing/decreasing terrain height as needed
+    {G}e5?
+        -1->r_3,
+        1->r_3
+    Select(G,
+        CHHT()
+    )->G
+
+    .Toggling stump bit
     {G} xor 4->{G}
 
     Return
