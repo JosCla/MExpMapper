@@ -93,10 +93,14 @@ Lbl DTIL {
     .Finding terrain heights for this tile and the one in front
     GHAT()->A
     GPBA()->D
-    A-(De5)->A
+    If A
+        A-(De5)->A
+    End
     r_2++
     GPBA()->B
-    B-ISAT()->B
+    If B
+        B-ISAT()->B
+    End
     r_2--
 
     .Finding screen pos of top tile
