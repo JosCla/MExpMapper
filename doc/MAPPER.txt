@@ -33,12 +33,16 @@ Repeat getKey(15)
     .Editor mode changing
     If getKey(53)
         SEMD(1)
+        DSTA("IMAP MODE",256)
     ElseIf getKey(52)
         SEMD(2)
+        DSTA("IDAT MODE",256)
     ElseIf getKey(51)
         SEMD(3)
+        DSTA("HMAP MODE",256)
     ElseIf getKey(50)
         SEMD(4)
+        DSTA("OMAP MODE",256)
     End
 
     .Actions within editor mode
