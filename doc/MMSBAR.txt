@@ -1,0 +1,20 @@
+.MExp Mapper Status Bar
+
+Lbl DSTA {
+    .Display Status
+    .r1: Pointer to text to display
+    .r2: Number to display (must be less than 256)
+        (will be ignored if greater than 255)
+
+    .Clearing area for display bar
+    WRect(0,58,96,6)
+    WRect(0,58,96,6)^r
+
+    .Drawing text and number
+    Text(1,58,r_1)
+    If r_2<256
+        Text(83,58,r_2>Dec)
+    End
+
+    Return
+}

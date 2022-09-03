@@ -1,6 +1,9 @@
 .MEXPMAPS
 .A program for viewing and editing MExp maps
 
+.Setting fixes
+Fix 5 .(draw text to buffers)
+
 .Setting things up
 L_1+768->S
 prgmMMSTAT
@@ -87,6 +90,9 @@ Repeat getKey(15)
         End
     End
 End
+
+.Unsetting fixes
+Fix 4 .(draw text to screen)
 
 .Saving and exiting
 ClrHome
