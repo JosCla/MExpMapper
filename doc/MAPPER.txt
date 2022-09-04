@@ -50,6 +50,13 @@ Repeat getKey(15)
         .IMAP mode
     ElseIf MD=2
         .IDAT mode
+        For(A,1,9)
+            {A+GDB1NCOD}->G
+            If getKey(G)
+                A->CB
+                DSTA({A*2+50+L_1}^r,256)
+            End
+        End
     ElseIf MD=3
         .HMAP mode
         If getKey(54)

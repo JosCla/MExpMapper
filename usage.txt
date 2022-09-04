@@ -16,7 +16,9 @@ IMAP mode:
 
 
 IDAT mode:
--
+- Press [1]-[9] to select an entity type to place
+- Press [2ND] to place the entity of the selected type
+- Press [DEL] to delete all entities on the cursor's tile
 
 
 

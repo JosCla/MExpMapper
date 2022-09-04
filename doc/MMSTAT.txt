@@ -18,11 +18,27 @@ L_1->^IM+2->^ID+2->^HM+2->^OM
     +2->^SX+2->^SY
     +2->^MD+2->^CB
 
+
 .Filenames
 "appvMEIMAP"->Str1FIMAP
 "appvMEIDAT"->Str1FIDAT
 "appvMEHMAP"->Str1FHMAP
 "appvMEOMAP"->Str1FOMAP
+
+.Pointers to entity names
+"PLAYER"->{L_1+50}^r
+"STANDLOG"->{L_1+52}^r
+"TREELOG"->{L_1+54}^r
+"HORIZLOG"->{L_1+56}^r
+"VERTLOG"->{L_1+58}^r
+"HORIZRAFT"->{L_1+60}^r
+"VERTRAFT"->{L_1+62}^r
+"SNOWFOLK"->{L_1+64}^r
+"SIGN"->{L_1+66}^r
+"POSTBOX"->{L_1+68}^r
+
+.Numberpad keycodes
+Data(33,34,26,18,35,27,19,36,28,20)->GDB1NCOD
 
 ."Entity height"
 .(Per entity type)
