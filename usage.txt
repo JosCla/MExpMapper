@@ -25,6 +25,7 @@ HMAP mode:
 - Press [ALPHA] to decrement the terrain height at the cursor
 - Press [MODE] to copy the current terrain height
 - Press [X,T] to paste the copied terrain height
+- Press [MATH] to peek the terrain height at the cursor
 
 
 OMAP mode:

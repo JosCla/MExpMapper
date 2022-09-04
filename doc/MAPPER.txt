@@ -62,10 +62,14 @@ Repeat getKey(15)
             DRSL()
         ElseIf getKey(55)
             GHAT(SX,SY)->CB
+            DSTA("HEIGHT COPIED:",CB)
         ElseIf getKey(40)
             STHT(SX,SY,CB)
             DGUP(1)
             DRSL()
+        ElseIf getKey(47)
+            GHAT(SX,SY)->G
+            DSTA("HEIGHT:",G)
         End
     ElseIf MD=4
         .OMAP mode
