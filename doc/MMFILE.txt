@@ -42,3 +42,24 @@ Lbl REAF {
     Else
     1Return
 }
+
+Lbl IDMU {
+    .IDAT Max Utilization
+    .Returns the total number of bytes in the IDAT appvar
+
+    {ID-2}^rReturn
+}
+
+Lbl IDUT {
+    .IDAT Utilization
+    .Returns how many bytes of IDAT are occupied
+    .   (judged by final byte of final entity of final island)
+    {ID}->G       .num islands
+    {G*2+ID}^r->G .ptr to final island
+
+    .{G+ID} is number of entities on island
+    .  as such we have {G+ID}*8 entity bytes, plus 8 more for island header
+    .Adding that to the island base pointer relative to IDAT, stored in G,
+    .  yields IDAT utilization.
+    {G+ID}+1*8+GReturn
+}

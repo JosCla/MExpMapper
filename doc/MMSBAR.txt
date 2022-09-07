@@ -3,8 +3,11 @@
 Lbl DSTA {
     .Display Status
     .r1: Pointer to text to display
-    .r2: Number to display (must be less than 256)
-        (will be ignored if greater than 255)
+    .r2: What to display on the right
+    .   0: nothing
+    .   1: number in r3
+    .   2: IDAT utilization
+    .r3: Number to display
 
     .Clearing area for display bar
     WRect(0,58,96,6)
@@ -12,8 +15,26 @@ Lbl DSTA {
 
     .Drawing text and number
     Text(1,58,r_1)
-    If r_2<256
-        Text(83,58,r_2>Dec)
+
+    If r_2=1
+        If r_3<1000
+            Text(83,58,r_3>Dec)
+        Else
+            Text(75,58,r_3>Dec)
+        End
+    ElseIf r_2=2
+        IDMU()->G
+        If G<1000
+            Text(83,58,G>Dec)
+            IDUT()->G
+            Text(67,58,G>Dec)
+            Text(79,58,"/")
+        Else
+            Text(79,58,G>Dec)
+            IDUT()->G
+            Text(59,58,G>Dec)
+            Text(75,58,"/")
+        End
     End
 
     Return

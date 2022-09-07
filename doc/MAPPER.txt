@@ -33,16 +33,16 @@ Repeat getKey(15)
     .Editor mode changing
     If getKey(53)
         SEMD(1)
-        DSTA("IMAP MODE",256)
+        DSTA("IMAP MODE",0)
     ElseIf getKey(52)
         SEMD(2)
-        DSTA("IDAT MODE",256)
+        DSTA("IDAT MODE",2)
     ElseIf getKey(51)
         SEMD(3)
-        DSTA("HMAP MODE",256)
+        DSTA("HMAP MODE",0)
     ElseIf getKey(50)
         SEMD(4)
-        DSTA("OMAP MODE",256)
+        DSTA("OMAP MODE",0)
     End
 
     .Actions within editor mode
@@ -54,7 +54,7 @@ Repeat getKey(15)
             {A+GDB1NCOD}->G
             If getKey(G)
                 A->CB
-                DSTA({A*2+50+L_1}^r,256)
+                DSTA({A*2+50+L_1}^r,0)
             End
         End
     ElseIf MD=3
@@ -69,14 +69,14 @@ Repeat getKey(15)
             DRSL()
         ElseIf getKey(55)
             GHAT(SX,SY)->CB
-            DSTA("HEIGHT COPIED:",CB)
+            DSTA("HEIGHT COPIED:",1,CB)
         ElseIf getKey(40)
             STHT(SX,SY,CB)
             DGUP(1)
             DRSL()
         ElseIf getKey(47)
             GHAT(SX,SY)->G
-            DSTA("HEIGHT:",G)
+            DSTA("HEIGHT:",1,G)
         End
     ElseIf MD=4
         .OMAP mode
