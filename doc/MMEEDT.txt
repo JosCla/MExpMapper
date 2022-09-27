@@ -21,3 +21,25 @@ Lbl GOSL {
     .Returning number of open slots
     H-I/8Return
 }
+
+Lbl DENT {
+    .Delete Entity
+    .r1-r2: Entity ID (island, entity number)
+    .Returns nothing
+
+    .Getting the entity count on the island
+    {r_1*2+ID}^r->G .pointer to start of island
+    {G+ID}->H       .number of entities on island
+
+    H-r_2->I        .number of entities after the entity to delete
+    If I
+        .If this is not the last entity, copy down subsequent entities
+        r_2*8+G+ID->J   .pointer to entity to delete
+        Copy(J+8,J,I*8)
+    End
+
+    .Decrementing number of entities on the island
+    H-1->{G+ID}
+
+    Return
+}
