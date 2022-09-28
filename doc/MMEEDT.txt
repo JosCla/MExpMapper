@@ -43,3 +43,20 @@ Lbl DENT {
 
     Return
 }
+
+Lbl DHEA {
+    .Delete highest entity at
+    .r1-r2: posX, posY
+    .Returns nothing
+
+    .Getting pointer to highest entity at the given point
+    255->r_3
+    GHEB()->G
+
+    If G
+        .Deleting the entity
+        DENT({G+3},{G+4})
+    End
+
+    Return
+}
