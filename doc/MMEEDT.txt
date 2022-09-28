@@ -31,6 +31,82 @@ Lbl GOSA {
     GOSL(G)Return
 }
 
+Lbl PEOT {
+    .Place entity on top
+    .r1-r2: posX, posY
+    .r3: Entity type
+    .Returns the entity ID (not including the island ID)
+    .   (returns 0 if entity could not be created)
+
+    .Allocating stack
+    S-5->S
+    r_1->{S}
+    r_2->{S+1}
+    r_3->{S+2}
+    A->{S+3}^r
+
+    .Getting the island at the given position
+    GIAT()->A
+    Return!If A .returning early if no island
+
+    .Finding the height to place at
+    255->r_3
+    GHEB()->G
+    If G
+        .If entities at this position, place just above top one
+        {G}->H
+        nib{GDB1ENTH*2+H}^r->I
+        {G+5}+I->G
+    Else
+        .Else just place our entity on the ground
+        GHAT({S},{S+1})+1->G
+    End
+
+    PENT(A,{S+2},{S},{S+1},G)->T
+
+    .Fixing stack
+    {S+3}^r->A
+    S+5->S
+
+    TReturn
+}
+
+Lbl PENT {
+    .Place Entity
+    .r1: Island number
+    .r2: Entity type
+    .r3-r4: posX, posY
+    .r5: height
+    .Returns the entity ID (not including the island ID)
+    .   (returns 0 if entity could not be created)
+
+    .Firstly, making sure that this island has open slots
+    GOSL()->G
+    If G
+        .Finding the first open slot
+        {r_1*2+ID}^r->G .pointer to start of island
+        {G+ID}+1->H     .number of entities on island
+        H*8+G+ID->I     .pointer to first open slot
+
+        .Placing new entity data there
+        r_2->{I}
+        r_3->{I+1}
+        r_4->{I+2}
+        r_1->{I+3}
+        H->{I+4}
+        r_5->{I+5}
+        0->{I+6}^r
+
+        .Incrementing total entities on the island
+        H->{G+ID}
+
+        .Returning the entity ID
+        HReturn
+    End
+
+    0Return
+}
+
 Lbl DENT {
     .Delete Entity
     .r1-r2: Entity ID (island, entity number)

@@ -60,13 +60,20 @@ Repeat getKey(15)
             End
         End
 
-        If getKey(48)
-            .Delete highest entity at
+        If getKey(54)?CB
+            .Place entity at highest point of selection
+            PEOT(SX,SY,CB)
+            DGUP(1)
+            DRSL()
+            GOSA(SX,SY)->G
+            DSTA("SLOTS:",1,G)
+        ElseIf getKey(48)
+            .Delete highest entity at selection
             DHEA(SX,SY)
             DGUP(1)
             DRSL()
         ElseIf getKey(47)
-            .Get num open slots at
+            .Get num open slots at selection
             GOSA(SX,SY)->G
             DSTA("SLOTS:",1,G)
         End
