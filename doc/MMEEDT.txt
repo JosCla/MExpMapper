@@ -31,7 +31,7 @@ Lbl DENT {
     {r_1*2+ID}^r->G .pointer to start of island
     {G+ID}->H       .number of entities on island
 
-    H-r_2->I        .number of entities after the entity to delete
+    H-r_2->I        .number of entities after the entity to shift down
     If I
         .If this is not the last entity, copy down subsequent entities
         r_2*8+G+ID->J   .pointer to entity to delete
