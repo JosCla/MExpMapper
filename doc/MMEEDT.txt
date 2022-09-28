@@ -45,6 +45,11 @@ Lbl DENT {
         .If this is not the last entity, copy down subsequent entities
         r_2*8+G+ID->J   .pointer to entity to delete
         Copy(J+8,J,I*8)
+
+        .Also change all entity IDs of subsequent entities
+        For(K,0,I-1)
+            r_2+K->{K*8+J+4}
+        End
     End
 
     .Decrementing number of entities on the island
