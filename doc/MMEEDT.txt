@@ -8,7 +8,7 @@ Lbl GOSL {
     .Getting a pointer to the first open slot of the given island
     {r_1*2+ID}^r->G .pointer to start of island
     {G+ID}->H       .number of entities on island
-    H*8+G->I        .pointer to first open slot
+    H+1*8+G->I        .pointer to first open slot
 
     .Getting a pointer to the next island's data, storing in H
     .   (or, if it's the last island, the end of the file)
