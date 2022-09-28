@@ -50,12 +50,25 @@ Repeat getKey(15)
         .IMAP mode
     ElseIf MD=2
         .IDAT mode
+
+        .Checking numeric inputs
         For(A,1,9)
             {A+GDB1NCOD}->G
             If getKey(G)
                 A->CB
                 DSTA({A*2+50+L_1}^r,0)
             End
+        End
+
+        If getKey(48)
+            .Delete highest entity at
+            DHEA(SX,SY)
+            DGUP(1)
+            DRSL()
+        ElseIf getKey(47)
+            .Get num open slots at
+            GOSA(SX,SY)->G
+            DSTA("SLOTS:",1,G)
         End
     ElseIf MD=3
         .HMAP mode

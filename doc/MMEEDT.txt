@@ -22,6 +22,15 @@ Lbl GOSL {
     H-I/8Return
 }
 
+Lbl GOSA {
+    .Get open slots at
+    .r1-r2: posX, posY
+    .Returns number of open slots in the island at the cursor
+    .   (returns 0 if no island)
+    GIAT()->G
+    GOSL(G)Return
+}
+
 Lbl DENT {
     .Delete Entity
     .r1-r2: Entity ID (island, entity number)
