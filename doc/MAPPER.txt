@@ -76,6 +76,11 @@ Repeat getKey(15)
             .Get num open slots at selection
             GOSA(SX,SY)->G
             DSTA("SLOTS:",1,G)
+        ElseIf getKey(32)
+            .Create open slots at selection
+            COSA(SX,SY,1)
+            GOSA(SX,SY)->G
+            DSTA("SLOTS:",1,G)
         End
     ElseIf MD=3
         .HMAP mode

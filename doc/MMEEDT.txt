@@ -3,7 +3,8 @@
 Lbl GOSL {
     .Get open slots on an island
     .r1: Island number
-    .Returns the number of open bytes between this island and the next
+    .Returns the number of open slots between this island and the next
+    .   (=number of open bytes/8)
 
     .Getting a pointer to the first open slot of the given island
     {r_1*2+ID}^r->G .pointer to start of island
@@ -29,6 +30,57 @@ Lbl GOSA {
     .   (returns 0 if no island)
     GIAT()->G
     GOSL(G)Return
+}
+
+Lbl COSL {
+    .Create open slots
+    .r1: Island number
+    .r2: Num slots to create
+    .Returns whether or not slots were successfully created
+
+    .Making sure there's enough space to create the open slots
+    IDUT()->G .IDAT memory used
+    IDMU()->H .total IDAT memory
+    H-G->G    .IDAT memory remaining
+
+    r_2*8->H .amount of memory needed for new slots
+    If H<=G
+        .Can create slots
+        .Shift each subsequent island forward by the num bytes needed for
+        .   new slots
+        {ID}^r->I .num islands
+        I->J
+        r_1->M    .stashing r_1 in M so it's not clobbered by CPRV
+        While J>M
+            .Moving island data
+            {J*2+ID}^r->K
+            {K+ID}->L
+            CPRV(K+ID,K+H+ID,L+1*8)
+
+            .Changing island pointer
+            K+H->{J*2+ID}^r
+
+            .Iterating to previous island
+            J--
+        End
+
+        1Return
+    End
+
+    0Return
+}
+
+Lbl COSA {
+    .Create open slots at
+    .r1-r2: posX, posY
+    .r3: num slots
+    .Returns whether slots were successfully created
+    .   (returns 0 if no island)
+    GIAT()->G
+    If G
+        COSL(G,r_3)Return
+    End
+    0Return
 }
 
 Lbl PEOT {

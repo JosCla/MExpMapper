@@ -18,8 +18,10 @@ IMAP mode:
 IDAT mode:
 - Press [1]-[9] to select an entity type to place
 - Press [2ND] to place the entity of the selected type
+- Press [ALPHA] to delete the top entity on the cursor's tile
 - Press [DEL] to delete all entities on the cursor's tile
-
+- Press [MATH] to see the number of open slots at the island at the cursor
+- Press [STAT] to create slots at the island at the cursor
 
 
 HMAP mode:
