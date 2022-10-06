@@ -22,6 +22,7 @@ IDAT mode:
 - Press [DEL] to delete all entities on the cursor's tile
 - Press [MATH] to see the number of open slots at the island at the cursor
 - Press [STAT] to create slots at the island at the cursor
+- Press [PRGM] to perform compaction, moving all open slots to end of file
 
 
 HMAP mode:

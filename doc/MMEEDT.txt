@@ -202,3 +202,31 @@ Lbl DHEA {
 
     Return
 }
+
+Lbl CPAI {
+    .Compact all islands
+    .Performs compaction on IDAT, moving all islands closer together and
+    .consolidating slots at the end of the file
+
+    .Getting pointer to first byte after first island
+    {ID}^r->G      .Num islands
+    {ID+2}^r+ID->I .Pointer to first island
+    {I}^r->J       .Num entities on first island
+    J+1*8+I->H     .Pointer to first byte after first island
+
+    .Moving subsequent islands down
+    For(I,2,G)
+        .Moving island down
+        {I*2+ID}^r+ID->J  .Pointer to island
+        {J}^r+1*8->K      .Num bytes on island
+        Copy(J,H,K)
+
+        .Updating pointer to island
+        H-ID->{I*2+ID}^r
+
+        .Resetting pointer to first byte after island
+        H+K->H
+    End
+
+    Return
+}

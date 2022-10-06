@@ -79,8 +79,14 @@ Repeat getKey(15)
         ElseIf getKey(32)
             .Create open slots at selection
             COSA(SX,SY,1)
+            Pause 100
             GOSA(SX,SY)->G
             DSTA("SLOTS:",1,G)
+        ElseIf getKey(31)
+            .Do compaction
+            CPAI()
+            Pause 100
+            DSTA("COMPACTION",2)
         End
     ElseIf MD=3
         .HMAP mode
