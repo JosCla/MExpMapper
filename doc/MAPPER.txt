@@ -11,6 +11,7 @@ ReturnIf LWOR()
 ClrHomeClrDraw^r^r
 0->CP
 0->SX->SY
+0->RN
 SEMD(0)
 CCAS()
 DSCR()
@@ -48,6 +49,13 @@ Repeat getKey(15)
     .Actions within editor mode
     If MD=1
         .IMAP mode
+
+        If getKey(54)
+            .Toggle island number display
+            1-RN->RN
+            DGUP(1)
+            DRSL()
+        End
     ElseIf MD=2
         .IDAT mode
 

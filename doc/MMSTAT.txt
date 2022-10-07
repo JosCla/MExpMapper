@@ -11,12 +11,13 @@
 .  SX/SY: Selector X,Y
 .  MD: Editor mode
 .  CB: Copy buffer
+.  RN: Render island numbers
 L_1->^IM+2->^ID+2->^HM+2->^OM
     +2->^MW+2->^MH
     +2->^CX+2->^CY+2->^CZ
     +2->^CP
     +2->^SX+2->^SY
-    +2->^MD+2->^CB
+    +2->^MD+2->^CB+2->^RN
 
 
 .Filenames

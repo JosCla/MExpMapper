@@ -11,8 +11,7 @@ Press the function keys to enter different modes:
 
 
 IMAP mode:
-- 
-
+- Press [2ND] to toggle displaying the current island at the cursor
 
 
 IDAT mode:

@@ -127,6 +127,12 @@ Lbl DTIL {
     .Rendering the cursor if applicable
     If r_1=SX?r_2=SY
         Pt-Mask(r_3,C,Pic1CURS)
+
+        .And within that, rendering the island number if applicable
+        If RN
+            GIAT()->G
+            Text(r_3,C,G>Dec)
+        End
     End
 
     .Render stumps/rocks if needed
