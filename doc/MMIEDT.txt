@@ -104,6 +104,11 @@ Lbl MKIL {
     .Adding new pointer
     IDUT()->G   .IDAT utilization also returns relative ptr to first open byte
     {ID}+1->H   .num islands
+    If H=1
+        .If this is our first island, IDAT utilization must be modified to
+        .   correctly point to the first open byte
+        G+2->G
+    End
     H->{ID}
     G->{H*2+ID}^r
 
