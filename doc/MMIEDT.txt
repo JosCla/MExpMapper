@@ -105,7 +105,7 @@ Lbl MKIL {
     IDUT()->G   .IDAT utilization also returns relative ptr to first open byte
     {ID}+1->H   .num islands
     H->{ID}
-    G->{H*2+ID}
+    G->{H*2+ID}^r
 
     .Adding new island header
     G+ID->G
