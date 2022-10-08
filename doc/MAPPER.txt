@@ -11,7 +11,7 @@ ReturnIf LWOR()
 ClrHomeClrDraw^r^r
 0->CP
 0->SX->SY
-0->RN
+1->RN
 SEMD(0)
 CCAS()
 DSCR()
