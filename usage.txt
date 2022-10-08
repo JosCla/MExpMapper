@@ -17,6 +17,7 @@ IMAP mode:
 - Press [STAT] to allocate memory for another island number
 - Press [X,T] to move the cursor to the respawn of the selected island number
 - Press [MODE] to set the respawn point of the selected island number
+- Press [APPS] to make the selected island number the first island in the map
 
 
 IDAT mode:

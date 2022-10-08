@@ -59,3 +59,20 @@ Lbl MVSR {
 
     Return
 }
+
+Lbl SFIL {
+    .Set first island (the island you start on in the map)
+    .r1: island number
+
+    .Making sure island is both greater than zero and less than max islands
+    Return!If r_1?<={ID}
+
+    .Setting every island but this one as not being the first island
+    {ID}->G .num islands
+    For(H,1,G)
+        {H*2+ID}^r+ID->I    .island pointer
+        H=r_1->{I+4}
+    End
+
+    Return
+}

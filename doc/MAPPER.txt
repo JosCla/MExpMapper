@@ -81,6 +81,11 @@ Repeat getKey(15)
             MVSR(CB)
             DGUP(1)
             DRSL()
+        ElseIf getKey(39)
+            .Set island as first island
+            SFIL(CB)
+            DSTA("FIRST SET",0)
+            Pause 100
         ElseIf getKey(32)
             .Allocate memory for another island
         ElseIf getKey(47)
