@@ -22,7 +22,40 @@ Lbl SPIL {
     .r1: new island index
     .Returns nothing
 
-    r_1<{ID}?r_1->CB
+    r_1<={ID}?r_1->CB
+
+    Return
+}
+
+Lbl SRSP {
+    .Set respawn point
+    .r1-r2: posX, posY
+    .r3: height
+    .r4: island number
+
+    .Making sure island is both greater than zero and less than max islands
+    Return!If r_4?<={ID}
+
+    .Setting the respawn point
+    {r_4*2+ID}^r+ID->G   .pointer to island
+    r_1->{G+1}
+    r_2->{G+2}
+    r_3->{G+3}
+
+    Return
+}
+
+Lbl MVSR {
+    .Move selection to respawn point
+    .r1: island number
+
+    .Making sure island is both greater than zero and less than max islands
+    Return!If r_1?<={ID}
+
+    .Moving selection to respawn point
+    {r_1*2+ID}^r+ID->G   .pointer to island
+    {G+1}->SX
+    {G+2}->SY
 
     Return
 }

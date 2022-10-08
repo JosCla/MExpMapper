@@ -72,8 +72,15 @@ Repeat getKey(15)
             Pause 100
         ElseIf getKey(55)
             .Set respawn point of island
+            GHAT(SX,SY)+1->G
+            SRSP(SX,SY,G,CB)
+            DSTA("RESPAWN SET",0)
+            Pause 100
         ElseIf getKey(40)
             .Move cursor to respawn point of island
+            MVSR(CB)
+            DGUP(1)
+            DRSL()
         ElseIf getKey(32)
             .Allocate memory for another island
         ElseIf getKey(47)
