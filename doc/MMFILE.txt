@@ -55,6 +55,9 @@ Lbl IDUT {
     .Returns how many bytes of IDAT are occupied
     .   (judged by final byte of final entity of final island)
     {ID}->G       .num islands
+    !If G
+        2Return    .returning 2 if we have no islands
+    End
     {G*2+ID}^r->G .ptr to final island
 
     .{G+ID} is number of entities on island

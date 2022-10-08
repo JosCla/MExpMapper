@@ -6,10 +6,13 @@ Lbl GOSL {
     .Returns the number of open slots between this island and the next
     .   (=number of open bytes/8)
 
+    .Return early if island does not exist
+    Return!If r_1?<={ID}
+
     .Getting a pointer to the first open slot of the given island
     {r_1*2+ID}^r->G .pointer to start of island
     {G+ID}->H       .number of entities on island
-    H+1*8+G->I        .pointer to first open slot
+    H+1*8+G->I      .pointer to first open slot
 
     .Getting a pointer to the next island's data, storing in H
     .   (or, if it's the last island, the end of the file)
@@ -37,6 +40,9 @@ Lbl COSL {
     .r1: Island number
     .r2: Num slots to create
     .Returns whether or not slots were successfully created
+
+    .Return early if island does not exist
+    Return!If r_1?<={ID}
 
     .Making sure there's enough space to create the open slots
     IDUT()->G .IDAT memory used
@@ -77,10 +83,7 @@ Lbl COSA {
     .Returns whether slots were successfully created
     .   (returns 0 if no island)
     GIAT()->G
-    If G
-        COSL(G,r_3)Return
-    End
-    0Return
+    COSL(G,r_3)Return
 }
 
 Lbl PEOT {
@@ -164,9 +167,15 @@ Lbl DENT {
     .r1-r2: Entity ID (island, entity number)
     .Returns nothing
 
+    .Return early if island does not exist
+    Return!If r_1?<={ID}
+
     .Getting the entity count on the island
     {r_1*2+ID}^r->G .pointer to start of island
     {G+ID}->H       .number of entities on island
+
+    Return early if entity does not exist
+    Return!If r_2?<=H
 
     H-r_2->I        .number of entities after the entity to shift down
     If I
@@ -210,8 +219,9 @@ Lbl CPAI {
 
     .Getting pointer to first byte after first island
     {ID}^r->G      .Num islands
+    ReturnIf G<2   .Nothing to do if 1 or fewer islands
     {ID+2}^r+ID->I .Pointer to first island
-    {I}->J          .Num entities on first island
+    {I}->J         .Num entities on first island
     J+1*8+I->H     .Pointer to first byte after first island
 
     .Moving subsequent islands down

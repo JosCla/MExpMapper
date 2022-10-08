@@ -7,8 +7,8 @@ Lbl SIAT {
     .Returns nothing
 
     .Checking bounds
-    If r_2>=MH??r_1>=MW
-        0Return
+    If r_2>=MH??r_1>=MW??r_3>{ID}
+        Return
     End
 
     .Setting island
