@@ -51,6 +51,32 @@ Repeat getKey(15)
         .IMAP mode
 
         If getKey(54)
+            .Place island
+            SIAT(SX,SY,CB)
+            DGUP(1)
+            DRSL()
+        ElseIf getKey(48)
+            .Eyedropper island
+            GIAT(SX,SY)->G
+            SPIL(G)
+            DSTA("ISLAND:",1,CB)
+        ElseIf getKey(10)
+            .Increase placing island
+            SPIL(CB+1)
+            DSTA("ISLAND:",1,CB)
+            Pause 100
+        ElseIf getKey(11)
+            .Decrease placing island
+            SPIL(CB-1)
+            DSTA("ISLAND:",1,CB)
+            Pause 100
+        ElseIf getKey(55)
+            .Set respawn point of island
+        ElseIf getKey(40)
+            .Move cursor to respawn point of island
+        ElseIf getKey(32)
+            .Allocate memory for another island
+        ElseIf getKey(47)
             .Toggle island number display
             1-RN->RN
             DGUP(1)

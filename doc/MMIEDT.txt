@@ -1,0 +1,28 @@
+.MExp Island Edit
+
+Lbl SIAT {
+    .Set island at
+    .r1-r2: posX, posY
+    .r3: value to place
+    .Returns nothing
+
+    .Checking bounds
+    If r_2>=MH??r_1>=MW
+        0Return
+    End
+
+    .Setting island
+    r_3->{r_2*MW+r_1+2+IM}
+
+    Return
+}
+
+Lbl SPIL {
+    .Set placing island (with bounds-checking)
+    .r1: new island index
+    .Returns nothing
+
+    r_1<{ID}?r_1->CB
+
+    Return
+}

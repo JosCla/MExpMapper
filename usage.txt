@@ -11,7 +11,12 @@ Press the function keys to enter different modes:
 
 
 IMAP mode:
-- Press [2ND] to toggle displaying the current island at the cursor
+- Press [+] and [-] to increase/decrease the island number to place
+- Press [ALPHA] to eyedropper the island number to place from the current tile
+- Press [2ND] to place the selected island number at the current tile
+- Press [STAT] to allocate memory for another island number
+- Press [X,T] to move the cursor to the respawn of the selected island number
+- Press [MODE] to set the respawn point of the selected island number
 
 
 IDAT mode:
