@@ -34,3 +34,32 @@ Lbl DGUP {
 
     Return
 }
+
+Lbl MENU {
+    .Displays a menu
+    .r1: Number of menu choices
+    .r2: Array of pointers to strings to display as options
+    .r3-r4: posX, posY of upper-left corner of choices
+    .Returns the number corresponding to the user's choice
+
+    .Displaying choices
+    For(G,1,r_1)
+        G-1*8+r_4->H
+        Text(r_3,H,G>Dec)
+        Text(r_3+6,H,{G-1*2+r_2}^r)
+    End
+
+    .Awaiting user response
+    While 1
+        DGWP()
+        For(G,1,r_1)
+            {G+GDB1NCOD}->H
+            If getKey(H)
+                GReturn
+            End
+        End
+    End
+
+    .(should never reach this point)
+    Return
+}

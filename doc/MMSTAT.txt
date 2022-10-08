@@ -38,6 +38,10 @@ L_1->^IM+2->^ID+2->^HM+2->^OM
 "SIGN"->{L_1+66}^r
 "POSTBOX"->{L_1+68}^r
 
+.Menu texts
+"OPEN MAP"->{L_1+80}^r
+"NEW MAP"->{L_1+82}^r
+
 .Numberpad keycodes
 Data(33,34,26,18,35,27,19,36,28,20)->GDB1NCOD
 

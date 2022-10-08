@@ -7,6 +7,12 @@ Fix 5 .(draw text to buffers)
 .Setting things up
 L_1+768->S
 prgmMMSTAT
+
+.Main menu
+ClrHomeClrDraw^r^r
+MENU(2,L_1+80,3,3)->A
+ReturnIf A=2
+
 ReturnIf LWOR()
 ClrHomeClrDraw^r^r
 0->CP
