@@ -4,16 +4,22 @@
 .Setting fixes
 Fix 5 .(draw text to buffers)
 
-.Setting things up
+.Basic setup
 L_1+768->S
 prgmMMSTAT
 
 .Main menu
 ClrHomeClrDraw^r^r
 MENU(2,L_1+80,3,3)->A
-ReturnIf A=2
+If A=1
+    ReturnIf LWOR()
+ElseIf A=2
+    ReturnIf CFIL(20,20,400)
+Else
+    Return
+End
 
-ReturnIf LWOR()
+.Getting the editor ready
 ClrHomeClrDraw^r^r
 0->CP
 0->SX->SY

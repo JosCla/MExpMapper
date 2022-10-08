@@ -66,3 +66,49 @@ Lbl IDUT {
     .  yields IDAT utilization.
     {G+ID}+1*8+GReturn
 }
+
+Lbl CFIL {
+    .Create file
+    .r1-r2: width, height
+    .r3: size of IDAT in bytes
+    .Returns whether or not the file could be successfully created
+
+    .Deleting existing files
+    DelVar Str1FIMAP
+    DelVar Str1FIDAT
+    DelVar Str1FHMAP
+    DelVar Str1FOMAP
+
+    .Getting file size for maps
+    r_1*r_2+2->G
+
+    .Creating all files
+    GetCalc(Str1FIMAP,G)->IM
+    GetCalc(Str1FIDAT,r_3)->ID
+    GetCalc(Str1FHMAP,G)->HM
+    GetCalc(Str1FOMAP,G)->OM
+
+    .Making sure files were successfully created
+    !If IM?ID?HM?OM
+        1Return
+    End
+
+    .Putting data in IDAT
+    0->{ID}^r .IDAT just has 0 islands
+
+    .Putting data in map files
+    r_1->{IM}->{HM}->{OM}
+    r_2->{IM+1}->{HM+1}->{OM+1}
+    G--
+    For(H,2,G)
+        0->{IM+H}
+        0->{HM+H}
+        2->{OM+H}
+    End
+
+    .Getting map dimensions
+    r_1->MW
+    r_2->MH
+
+    0Return
+}
