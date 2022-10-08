@@ -76,3 +76,43 @@ Lbl SFIL {
 
     Return
 }
+
+Lbl MKIL {
+    .Make new island (allocate space for it)
+
+    .Making sure there are at least 10 free bytes to use
+    .(2 for pointer, 8 for island data header)
+    IDUT()->G   .IDAT memory used
+    IDMU()->H   .total IDAT memory
+    Return!If H-G>=10
+
+    .Shifting all islands forward by 2 to make room for new pointer
+    {ID}->H .num islands
+    While H
+        .Moving island data
+        {H*2+ID}^r->I
+        {I+ID}->J
+        CPRV(I+ID,I+2+ID,J+1*8)
+
+        .Changing island pointer
+        I+2->{H*2+ID}^r
+
+        .Iterating to previous island
+        H--
+    End
+
+    .Adding new pointer
+    IDUT()->G   .IDAT utilization also returns relative ptr to first open byte
+    {ID}+1->H   .num islands
+    H->{ID}
+    G->{H*2+ID}
+
+    .Adding new island header
+    G+ID->G
+    0->{G}^r
+    0->{G+2}^r
+    0->{G+4}^r
+    0->{G+6}^r
+
+    Return
+}

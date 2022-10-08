@@ -88,6 +88,9 @@ Repeat getKey(15)
             Pause 100
         ElseIf getKey(32)
             .Allocate memory for another island
+            MKIL()
+            DSTA("ISL COUNT:",1,{ID})
+            Pause 500
         ElseIf getKey(47)
             .Toggle island number display
             1-RN->RN
