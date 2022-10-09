@@ -84,8 +84,9 @@ Repeat getKey(15)
             Pause 100
         ElseIf getKey(55)
             .Set respawn point of island
-            GHAT(SX,SY)+1->G
-            SRSP(SX,SY,G,CB)
+            GHAT(SX,SY)+1->A
+            GIAT(SX,SY)->B
+            SRSP(SX,SY,A,B)
             DSTA("RESPAWN SET",0)
             Pause 100
         ElseIf getKey(40)
@@ -95,12 +96,14 @@ Repeat getKey(15)
             DRSL()
         ElseIf getKey(39)
             .Set island as first island
-            SFIL(CB)
+            GIAT(SX,SY)->G
+            SFIL(G)
             DSTA("FIRST SET",0)
             Pause 100
         ElseIf getKey(32)
             .Allocate memory for another island
             MKIL()
+            {ID}->CB
             DSTA("ISL COUNT:",1,{ID})
             Pause 500
         ElseIf getKey(47)
