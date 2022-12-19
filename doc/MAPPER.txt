@@ -14,7 +14,62 @@ MENU(2,L_1+80,3,3)->A
 If A=1
     ReturnIf LWOR()
 ElseIf A=2
-    ReturnIf CFIL(20,20,400)
+    .Getting desired map dimensions
+    0->A
+    0->B
+    20->C
+    20->D
+    400->E
+    Repeat A=2
+        .Displaying stuff
+        ClrHomeClrDraw^r^r
+        Text(3,3,"SETTINGS")
+        Text(3,11,"WIDTH:")
+        Text(3,19,"HEIGHT:")
+        Text(3,27,"IDAT SIZE:")
+        IRect(3,B*8+11,36,8)
+        Text(40,11,C>Dec)
+        Text(40,19,D>Dec)
+        Text(40,27,E>Dec)
+        DispGraph
+
+        .Awaiting inputs
+        0->A
+        Repeat A
+            If getKey(1)
+                B<2?B++
+                1->A
+            ElseIf getKey(2)
+                If B=0?C>12
+                    C--
+                ElseIf B=1?D>8
+                    D--
+                ElseIf B=2?E
+                    E-8->E
+                End
+                1->A
+            ElseIf getKey(3)
+                If B=0?C<100
+                    C++
+                ElseIf B=1?D<100
+                    D++
+                ElseIf B=2?E<1000
+                    E+8->E
+                End
+                1->A
+            ElseIf getKey(4)
+                B?B--
+                1->A
+            ElseIf getKey(15)
+                2->A
+            End
+        End
+
+        .(pausing to make the inputs less rapid)
+        Pause 100
+    End
+
+    ReturnIf CFIL(C,D,E)
 Else
     Return
 End
