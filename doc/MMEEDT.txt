@@ -90,15 +90,17 @@ Lbl PEOT {
     .Place entity on top
     .r1-r2: posX, posY
     .r3: Entity type
+    .r4: Word to place in last bytes of entity
     .Returns the entity ID (not including the island ID)
     .   (returns 0 if entity could not be created)
 
     .Allocating stack
-    S-5->S
+    S-7->S
     r_1->{S}
     r_2->{S+1}
     r_3->{S+2}
-    A->{S+3}^r
+    r_4->{S+3}^r
+    A->{S+5}^r
 
     .Getting the island at the given position
     GIAT()->A
@@ -117,11 +119,11 @@ Lbl PEOT {
         GHAT({S},{S+1})+1->G
     End
 
-    PENT(A,{S+2},{S},{S+1},G)->T
+    PENT(A,{S+2},{S},{S+1},G,{S+3}^r)->T
 
     .Fixing stack
-    {S+3}^r->A
-    S+5->S
+    {S+5}^r->A
+    S+7->S
 
     TReturn
 }
@@ -132,6 +134,7 @@ Lbl PENT {
     .r2: Entity type
     .r3-r4: posX, posY
     .r5: height
+    .r6: Word to place in last bytes of entity
     .Returns the entity ID (not including the island ID)
     .   (returns 0 if entity could not be created)
 
@@ -150,7 +153,7 @@ Lbl PENT {
         r_1->{I+3}
         H->{I+4}
         r_5->{I+5}
-        0->{I+6}^r
+        r_6->{I+6}^r
 
         .Incrementing total entities on the island
         H->{G+ID}

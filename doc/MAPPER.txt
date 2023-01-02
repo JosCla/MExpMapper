@@ -181,7 +181,37 @@ Repeat getKey(15)
 
         If getKey(54)?CB
             .Place entity at highest point of selection
-            PEOT(SX,SY,CB)
+
+            .First getting extra bytes on end of entity
+            0->G
+            If CB=8?{ST}
+                .Get sign number
+                {ST}->H .max sign number
+                1->G    .curr sign number
+                1->I    .update status
+                Repeat I=2
+                    If I=1
+                        ClrHome
+                        Disp "STR: "
+                        Disp G>Dec
+                        0->I
+                        Pause 10
+                    End
+
+                    If getKey(1)?G>1
+                        G--
+                        1->I
+                    ElseIf getKey(4)?G<H
+                        G++
+                        1->I
+                    ElseIf getKey(9)
+                        2->I
+                    End
+                End
+            End
+
+            .Placing entity
+            PEOT(SX,SY,CB,G)
             DGUP(1)
             DRSL()
             GOSA(SX,SY)->G
