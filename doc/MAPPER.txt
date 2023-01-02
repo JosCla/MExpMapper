@@ -171,7 +171,7 @@ Repeat getKey(15)
         .IDAT mode
 
         .Checking numeric inputs
-        For(A,1,9)
+        For(A,1,8)
             {A+GDB1NCOD}->G
             If getKey(G)
                 A->CB

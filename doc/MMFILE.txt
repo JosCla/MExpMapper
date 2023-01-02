@@ -4,22 +4,21 @@ Lbl LWOR {
     .Loads a world file into RAM, unarchiving it
     .Directly returns the load status (0 good, higher bad)
 
-    .Unarchiving the loading the world files
-    UnArchive Str1FIMAP
-    UnArchive Str1FIDAT
-    UnArchive Str1FHMAP
-    UnArchive Str1FOMAP
-
-    .Loading the world files
-    GetCalc(Str1FIMAP)->IM
-    GetCalc(Str1FIDAT)->ID
-    GetCalc(Str1FHMAP)->HM
-    GetCalc(Str1FOMAP)->OM
+    .Unarchiving the loading the world file, and loading it
+    UnArchive Str1FWORL
+    GetCalc(Str1FWORL)->WF
 
     .Exiting if that failed
-    !If IM?ID?HM?OM
+    !If WF
         1Return
     End
+
+    .Getting pointers to files within world file
+    {WF}^r+WF->IM
+    {WF+2}^r+WF->ID
+    {WF+4}^r+WF->HM
+    {WF+6}^r+WF->OM
+    {WF+8}^r+WF->ST
 
     .Getting map dimensions
     {IM}->MW
@@ -32,12 +31,20 @@ Lbl REAF {
     .Rearchive Files
     .Returns 0 if files could be rearchived, 1 if they could not
 
-    Archive Str1FIMAP->G
-    Archive Str1FIDAT->H
-    Archive Str1FHMAP->I
-    Archive Str1FOMAP->J
+    .First correcting checksums of files within world file
+    {IM-2}^r->G
+    cumSum(IM,G)->{IM+G}^r
+    cumSum(HM,G)->{HM+G}^r
+    cumSum(OM,G)->{OM+G}^r
+    {ID-2}^r->G
+    cumSum(ID,G)->{ID+G}^r
+    {ST-2}^r->G
+    cumSum(ST,G)->{ST+G}^r
 
-    If G?H?I?J
+    .Then rearchiving world file
+    Archive Str1FWORL->G
+
+    If G
         0Return
     Else
     1Return
@@ -73,32 +80,59 @@ Lbl CFIL {
     .r3: size of IDAT in bytes
     .Returns whether or not the file could be successfully created
 
-    .Deleting existing files
-    DelVar Str1FIMAP
-    DelVar Str1FIDAT
-    DelVar Str1FHMAP
-    DelVar Str1FOMAP
+    .Deleting existing world file
+    DelVar Str1FWORL
+
+    .Putting map dimensions into variables
+    r_1->MW
+    r_2->MH
 
     .Getting file size for maps
-    r_1*r_2+2->G
+    MW*MH+2->G
 
-    .Creating all files
-    GetCalc(Str1FIMAP,G)->IM
-    GetCalc(Str1FIDAT,r_3)->ID
-    GetCalc(Str1FHMAP,G)->HM
-    GetCalc(Str1FOMAP,G)->OM
+    .Attempting to load strs file to copy it into the world
+    2->I
+    GetCalc(Str1FSTRS,Y_1)->J
+    If J
+        .Successfully loaded strings file!
+        {Y_1-2}^r->I
+    End
 
-    .Making sure files were successfully created
-    !If IM?ID?HM?OM
+    .Creating the new world file
+    .(size = 3*map + 1*idat + IB for strings
+    .   + (2B ptr + 2B size + 2B checksum) * 5 files)
+    GetCalc(Str1FWORL,G*3+r_3+I+30)->WF
+
+    .Making sure the file was successfully created
+    !If WF
         1Return
     End
+
+    .Getting and storing pointers to all virtual world files
+    12->H->{WF}^r
+    H+WF->IM
+    H+G+4->H->{WF+2}^r
+    H+WF->ID
+    H+r_3+4->H->{WF+4}^r
+    H+WF->HM
+    H+G+4->H->{WF+6}^r
+    H+WF->OM
+    H+G+4->H->{WF+8}^r
+    H+WF->ST
+
+    .Putting sizes in virtual world files
+    G->{IM-2}^r
+    r_3->{ID-2}^r
+    G->{HM-2}^r
+    G->{OM-2}^r
+    I->{ST-2}^r
 
     .Putting data in IDAT
     0->{ID}^r .IDAT just has 0 islands
 
     .Putting data in map files
-    r_1->{IM}->{HM}->{OM}
-    r_2->{IM+1}->{HM+1}->{OM+1}
+    MW->{IM}->{HM}->{OM}
+    MH->{IM+1}->{HM+1}->{OM+1}
     G--
     For(H,2,G)
         0->{IM+H}
@@ -106,9 +140,12 @@ Lbl CFIL {
         2->{OM+H}
     End
 
-    .Getting map dimensions
-    r_1->MW
-    r_2->MH
+    .Putting data in strings file
+    If J
+        Copy(Y_1,ST,I)
+    Else
+        0->{ST}^r
+    End
 
     0Return
 }
