@@ -72,6 +72,18 @@ Lbl TGLD {
     Return
 }
 
+Lbl TGGT {
+    .Toggle ground texture at
+    .r1-r2: PosX, PosY
+
+    r_2*MW+r_1+2+OM->G
+    nib{G*2}+1->H
+    H>=4?0->H
+    H->nib{G*2}
+
+    Return
+}
+
 Lbl SPBA {
     .Set property byte at
     .r1-r2: PosX, PosY
