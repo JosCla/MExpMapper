@@ -2,11 +2,12 @@ MExpMapper Usage Guide:
 
 At any point, press [CLEAR] to save and exit the application.
 
-Press the function keys to enter different modes:
+Press the function keys to enter different modes (you start in normal mode):
 - [Y=] ("F1"): IMAP mode
 - [WINDOW] ("F2"): IDAT mode
 - [ZOOM] ("F3"): HMAP mode
 - [TRACE] ("F4"): OMAP mode
+- [GRAPH] ("F5"): Normal mode
 
 
 

@@ -111,6 +111,9 @@ Repeat getKey(15)
     ElseIf getKey(50)
         SEMD(4)
         DSTA("OMAP MODE",0)
+    ElseIf getKey(49)
+        SEMD(0)
+        DSTA("NORMAL",0)
     End
 
     .Actions within editor mode
