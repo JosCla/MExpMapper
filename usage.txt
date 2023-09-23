@@ -19,6 +19,7 @@ IMAP mode:
 - Press [X,T] to move the cursor to the respawn of the selected island number
 - Press [MODE] to set the respawn point of the selected island number
 - Press [APPS] to make the selected island number the first island in the map
+- Press [MATH] to toggle whether the cursor shows the current island
 
 
 IDAT mode:
@@ -37,6 +38,7 @@ HMAP mode:
 - Press [MODE] to copy the current terrain height
 - Press [X,T] to paste the copied terrain height
 - Press [MATH] to peek the terrain height at the cursor
+- Press [x^-1] to toggle whether height borders are drawn
 
 
 OMAP mode:

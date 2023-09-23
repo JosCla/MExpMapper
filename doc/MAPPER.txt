@@ -76,8 +76,7 @@ End
 
 .Getting the editor ready
 ClrHomeClrDraw^r^r
-0->CP
-0->SX->SY
+0->CP->SX->SY->HB
 1->RN
 SEMD(0)
 CCAS()
@@ -260,6 +259,10 @@ Repeat getKey(15)
         ElseIf getKey(47)
             GHAT(SX,SY)->G
             DSTA("HEIGHT:",1,G)
+        ElseIf getKey(46)
+            1-HB->HB
+            DGUP(1)
+            DRSL()
         End
     ElseIf MD=4
         .OMAP mode
