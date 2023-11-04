@@ -168,6 +168,20 @@ Repeat getKey(15)
             1-RN->RN
             DGUP(1)
             DRSL()
+        ElseIf getKey(29)
+            .Set backward island
+            GIAT(SX,SY)->G
+            {CB*2+ID}->H
+            G->{H+5+ID}
+            DSTA("SET BACK:",1,G)
+            Pause 100
+        ElseIf getKey(21)
+            .Set forward island
+            GIAT(SX,SY)->G
+            {CB*2+ID}->H
+            G->{H+6+ID}
+            DSTA("SET FORW:",1,G)
+            Pause 100
         End
     ElseIf MD=2
         .IDAT mode
