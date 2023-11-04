@@ -27,6 +27,23 @@ Lbl SPIL {
     Return
 }
 
+Lbl SFBN {
+    .Set forward/backward island number
+    .r1: island number
+    .r2: forward/backward island number
+    .r3: 5 for backward, 6 for forward
+
+    .Validating island numbers
+    Return!If r_1?<={ID} .target island num must be in (0,max island)
+    Return!If r_2<={ID} .forw/back island num must be in [0,max island)
+
+    .Setting the forw/back island
+    {r_1*2+ID}^r+ID->G   .pointer to island
+    r_2->{G+r_3}
+
+    Return
+}
+
 Lbl SRSP {
     .Set respawn point
     .r1-r2: posX, posY

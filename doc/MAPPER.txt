@@ -171,16 +171,14 @@ Repeat getKey(15)
         ElseIf getKey(29)
             .Set backward island
             GIAT(SX,SY)->G
-            {CB*2+ID}->H
-            G->{H+5+ID}
-            DSTA("SET BACK:",1,G)
+            SFBN(CB,G,5)
+            DSTA("SET BACK",0)
             Pause 100
         ElseIf getKey(21)
             .Set forward island
             GIAT(SX,SY)->G
-            {CB*2+ID}->H
-            G->{H+6+ID}
-            DSTA("SET FORW:",1,G)
+            SFBN(CB,G,6)
+            DSTA("SET FORW",0)
             Pause 100
         End
     ElseIf MD=2
