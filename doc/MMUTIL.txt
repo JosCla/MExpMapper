@@ -50,16 +50,24 @@ Lbl MENU {
     End
 
     .Awaiting user response
-    While 1
+    Repeat GNUM()->G
         DGWP()
-        For(G,1,r_1)
-            {G+GDB1NCOD}->H
-            If getKey(H)
-                GReturn
-            End
-        End
     End
 
-    .(should never reach this point)
-    Return
+    .Returning user response
+    GReturn
+}
+
+Lbl GNUM {
+    .Determines if the user is pressing a number from 1 to r1
+    .r1: Max num
+    .Returns the number pressed, or 0 if none
+
+    For(G,1,r_1)
+        {G+GDB1NCOD}->H
+        If getKey(H)
+            GReturn
+        End
+    End
+    0Return
 }

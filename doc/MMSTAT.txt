@@ -36,7 +36,6 @@ L_1->^IM+2->^ID+2->^HM+2->^OM+2->^ST+2->^WF
 "VERTRAFT"->{L_1+62}^r
 "SNOWFOLK"->{L_1+64}^r
 "SIGN"->{L_1+66}^r
-"POSTBOX"->{L_1+68}^r
 
 .Menu texts
 "OPEN MAP"->{L_1+80}^r
