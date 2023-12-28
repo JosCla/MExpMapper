@@ -195,11 +195,14 @@ Repeat getKey(15)
 
             .First getting extra bytes on end of entity
             0->G
-            If CB=8
+            If CB=7??CB=8
                 .Get sign number
                 DSTA("SIGN NUM",0)
                 Repeat GNUM(9)->G
                     DGWP()
+                End
+                If G=9
+                    0->G
                 End
             End
 
