@@ -75,11 +75,30 @@ Lbl TGLD {
 Lbl TGGT {
     .Toggle ground texture at
     .r1-r2: PosX, PosY
+    .Returns the set ground texture
 
     r_2*MW+r_1+2+OM->G
     nib{G*2}+1->H
     H>=4?0->H
     H->nib{G*2}
+
+    HReturn
+}
+
+Lbl TAGT
+    .Toggle all ground textures, relative to position
+    .r1-r2: PosX, PosY
+
+    .Toggling given position
+    TGGT()->G
+
+    .Setting all the other positions
+    For(H,0,MH-1)
+        For(I,0,MW-1)
+            H*MW+I+2+OM->J
+            G->nib{J*2}
+        End
+    End
 
     Return
 }

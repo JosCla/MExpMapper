@@ -54,5 +54,6 @@ OMAP mode:
 - Press [MATH] to toggle a rock
 - Press [x^-1] to toggle a ladder 
 - Press [APPS] to change the ground texture
+- Press [SIN] to change the ground texture and apply the new texture everywhere
 - Press [MODE] to copy the current terrain properties
 - Press [X,T] to paste the copied terrain properties
