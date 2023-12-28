@@ -29,11 +29,14 @@ IMAP mode:
 IDAT mode:
 - Press [1]-[9] to select an entity type to place
 - Press [2ND] to place the entity of the selected type
+    - If the entity is either a sign or a snowfolk, you will be prompted for
+      the sign number to pair with the entity. Press 9 to assign none.
 - Press [ALPHA] to delete the top entity on the cursor's tile
-- Press [DEL] to delete all entities on the cursor's tile
-- Press [MATH] to see the number of open slots at the island at the cursor
+- Press [MATH] to delete the Nth highest entity on the cursor's tile
+    - You will be prompted for N.
 - Press [STAT] to create slots at the island at the cursor
-- Press [PRGM] to perform compaction, moving all open slots to end of file
+- Press [PRGM] to see the number of open slots at the island at the cursor
+- Press [DEL] to perform compaction, moving all open slots to end of file
 
 
 HMAP mode:
