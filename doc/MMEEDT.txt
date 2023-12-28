@@ -203,14 +203,43 @@ Lbl DHEA {
     .r1-r2: posX, posY
     .Returns nothing
 
-    .Getting pointer to highest entity at the given point
-    255->r_3
-    GHEB()->G
+    1->r_3
 
-    If G
-        .Deleting the entity
-        DENT({G+3},{G+4})
+    .(no return; proceed straight to start of DNHA)
+}
+Lbl DNHA {
+    .Delete Nth highest entity at
+    .r1-r2: posX, posY
+    .r3: N
+    .Returns nothing
+
+    .Building stack, saving args
+    S-6->S
+    A->{S}^r
+    B->{S+2}^r
+    C->{S+4}^r
+    r_1->A
+    r_2->B
+    r_3->C
+
+    .Finding Nth highest entity
+    255->G .height to look below
+    While C
+        GHEB(A,B,G)->H
+        Return!If H
+
+        {H+5}->G
+        C--
     End
+
+    .Deleting it
+    DENT({H+3},{H+4})
+
+    .Recovering stack
+    {S}^r->A
+    {S+2}^r->B
+    {S+4}^r->C
+    S+6->S
 
     Return
 }

@@ -218,9 +218,14 @@ Repeat getKey(15)
             DGUP(1)
             DRSL()
         ElseIf getKey(47)
-            .Get num open slots at selection
-            GOSA(SX,SY)->G
-            DSTA("SLOTS:",1,G)
+            .Delete Nth highest entity at selection
+            DSTA("DEL N",0)
+            Repeat GNUM(9)->G
+                DGWP()
+            End
+            DNHA(SX,SY,G)
+            DGUP(1)
+            DRSL()
         ElseIf getKey(32)
             .Create open slots at selection
             COSA(SX,SY,1)
@@ -228,6 +233,10 @@ Repeat getKey(15)
             GOSA(SX,SY)->G
             DSTA("SLOTS:",1,G)
         ElseIf getKey(31)
+            .Get num open slots at selection
+            GOSA(SX,SY)->G
+            DSTA("SLOTS:",1,G)
+        ElseIf getKey(56)
             .Do compaction
             CPAI()
             Pause 100
